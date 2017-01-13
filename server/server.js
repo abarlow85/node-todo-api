@@ -5,9 +5,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const {ObjectID} = require('mongodb');
-let {mongoose} = require('./db/mongoose');
-let {Todo} = require('./models/todo');
-let {User} = require('./models/user');
+const {mongoose} = require('./db/mongoose');
+const {Todo} = require('./models/todo');
+const {User} = require('./models/user');
+const {authenticate} = require('./middleware/authenticate');
 
 const app = express();
 const PORT = process.env.PORT
@@ -123,6 +124,10 @@ app.post('/users', (req, res) => {
 	});
 
 
+});
+
+app.get('/users/me', authenticate, (req, res) => {
+	res.send(req.user);
 });
 
 app.listen(PORT, () => {
