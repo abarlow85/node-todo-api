@@ -1,6 +1,6 @@
 const expect = require('expect');
 const request = require('supertest');
-const {ObjectID} = require('mongodb')
+const {ObjectID} = require('mongodb');
 
 const {app} = require('../server');
 const {Todo} = require('../models/todo');
@@ -194,7 +194,7 @@ describe('DELETE /todos/:id', () => {
 
 	});
 
-})
+});
 
 describe('PATCH /todos/:id', () => {
 
@@ -287,9 +287,9 @@ describe('POST /users', () => {
 				User.findOne({email}).then(user => {
 					expect(user).toExist();
 					expect(user.password).toNotBe(password);
-					done()
+					done();
 				}).catch(e => {
-					done(e)
+					done(e);
 				});
 			});
 
@@ -299,7 +299,7 @@ describe('POST /users', () => {
 		const body = {
 			email: '123456',
 			password: 'abarlow85@gmail.com'
-		}
+		};
 
 		request(app)
 			.post('/users')
@@ -313,7 +313,7 @@ describe('POST /users', () => {
 		const body = {
 			email: users[0].email,
 			password: '123456'
-		}
+		};
 
 		request(app)
 			.post('/users')
@@ -344,7 +344,7 @@ describe('GET /users/me', () => {
 			.get('/users/me')
 			.expect(401)
 			.expect(res => {
-				expect(res.body).toEqual({})
+				expect(res.body).toEqual({});
 			})
 			.end(done);
 	});
@@ -366,19 +366,19 @@ describe('POST /users/login', () => {
 			})
 			.end((err, res) => {
 				if (err) {
-					done(err)
+					done(err);
 				}
 
 				User.findById(users[1]._id).then((user) => {
 					expect(user.tokens[1]).toInclude({
 						access: 'auth',
 						token: res.headers['x-auth']
-					})
+					});
 					done();
 				}).catch(e => {
-					done(e)
-				})
-			})
+					done(e);
+				});
+			});
 	});
 
 	it('should reject invalid login', done => {
@@ -394,14 +394,14 @@ describe('POST /users/login', () => {
 			})
 			.end((err, res) => {
 				if (err) {
-					done(err)
+					done(err);
 				}
 
 				User.findById(users[1]._id).then((user) => {
-					expect(user.tokens.length).toBe(1)
+					expect(user.tokens.length).toBe(1);
 					done();
 				}).catch(e => {
-					done(e)
+					done(e);
 				});
 			});
 	});
@@ -430,11 +430,3 @@ describe('DELETE /users/me/token', () => {
 	});
 
 });
-
-
-
-
-
-
-
-

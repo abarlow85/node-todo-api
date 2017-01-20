@@ -20,6 +20,11 @@ app.use(bodyParser.json());
 app.use(cors(corsOptions));
 require('./routes/index')(app);
 
+app.use((req, res, next) => {
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-auth");
+	next();
+})
+
 app.listen(PORT, () => {
 	console.log('Started on port', PORT);
 });
