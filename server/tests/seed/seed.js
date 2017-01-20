@@ -7,6 +7,7 @@ const {User} = require('../../models/user');
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
 
+
 const users = [
 	{
 		_id: userOneId,
@@ -54,7 +55,7 @@ const populateUsers = (done) => {
 		const userOne = new User(users[0]).save();
 		const userTwo = new User(users[1]).save();
 
-		return Promise.all([userOne, userTwo])
+		return Promise.all([userOne, userTwo]);
 	}).then(() => done());
 };
 

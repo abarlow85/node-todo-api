@@ -38,7 +38,7 @@ UserSchema.methods.toJSON = function() {
 	const {_id, email} = user.toObject();
 
 	// return _.pick(userObject, ['_id', 'email']);
-	return {_id, email}
+	return {_id, email};
 
 };
 
@@ -85,8 +85,8 @@ UserSchema.statics.findByToken = function(token) {
 		'tokens.token': token,
 		'tokens.access': 'auth'
 	});
-	
-}
+
+};
 
 UserSchema.statics.findByCredentials = function(email, password) {
 	const User = this;
@@ -104,7 +104,7 @@ UserSchema.statics.findByCredentials = function(email, password) {
 				} else {
 					reject();
 				}
-			})
+			});
 
 		});
 

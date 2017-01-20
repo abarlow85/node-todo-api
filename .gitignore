@@ -2,3 +2,5 @@ node_modules/
 playground/
 *.log
 server/config/config.json
+.jshintrc
+.tern-project
