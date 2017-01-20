@@ -13,17 +13,14 @@ const app = express();
 
 const PORT = process.env.PORT;
 const corsOptions = {
-	origin: ['http://localhost:3000']
+	origin: ['http://localhost:3000'],
+	exposedHeaders: 'x-auth'
 };
 
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 require('./routes/index')(app);
 
-app.use((req, res, next) => {
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-auth");
-	next();
-})
 
 app.listen(PORT, () => {
 	console.log('Started on port', PORT);
